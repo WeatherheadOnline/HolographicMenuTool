@@ -1,0 +1,124 @@
+/*** CSS instructions ***
+
+This file includes the required stying plus a few optional styles at the end. 
+
+(2a) Save this file in your project.
+(2b) Remove the optional styling at the bottom of the file if you don't want it.
+(2c) Replace the colors and length values with your preferred values.
+(2d) Add this line to the head of your HTML document:
+     <link href="[YOUR FILE PATH]HolographicMenu.css" rel="stylesheet" type="text/css" />
+
+Optional: If your form contains multiple fieldsets, color-coordinate their buttons' borders: 
+(2e) In the HTML file, give each fieldset a unique name attribute.
+(2f) Add to the CSS (below): 
+.holomenu-btn.[your fieldset's name]-border {border-color: ___} 
+
+*****************************/
+
+
+/****************************/
+/* ~~~ Required styling ~~~ */
+/****************************/
+
+body {
+  position: relative;
+  --btn-bkgd-default: #091b3e;
+  --menu-bkgd: #091b3eCC;
+  --checkbox-btn-bkgd: #3e092a;
+  --radio-btn-bkgd: #29093e;  
+  --icon-stroke: #beecfb;
+  --btn-text: #54cdf3;
+}
+#holograph-menu {
+  position: fixed;
+  bottom: 1rem;  
+  right: 1rem;  
+  z-index: 4;
+  @media screen and (hover) {
+     /*  This line prevents the input menu from showing up on desktop devices: */
+     display: none;
+  }
+}    
+
+#holograph-icon svg {
+  width: 2.2rem;
+  height: auto;
+  stroke: var(--icon-stroke);   
+  border: 3px solid var(--icon-stroke);
+}
+#holograph-buttons {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: right;
+  row-gap: 0.1rem;
+  background-color: var(--menu-bkgd);
+}
+
+/* Color-coded button backgrounds for different input types */
+.holomenu-btn.checkbox-color {background-color: var(--checkbox-btn-bkgd);}
+.holomenu-btn.radio-color {background-color: var(--radio-btn-bkgd);}
+.holomenu-btn.text-color {/* if no background-color is specified, this defaults to generic rule for .holomenu-btn */} 
+.holomenu-btn.email-color {/* if no background-color is specified, this defaults to generic rule for .holomenu-btn */}
+
+/* Color-coded borders for input menu buttons from different fieldsets */
+.holomenu-btn.default-border {/* for fieldsets without a name attribute, buttons are given this class name */}
+    /* if no border color is specified, buttons default to the generic rule for .holomenu-btn */
+
+.holomenu-btn {
+  padding: 0.2rem 0.5rem;
+  max-height: min-content;
+  font-size: 1rem;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--btn-text);
+  color: var(--btn-text);
+  background-color: var(--btn-bkgd-default);  
+}
+#holograph-menu span {  /* (the input menu's "close" button) */
+  padding: 0 0.5rem;
+  font-size: 2rem;
+  line-height: 1.5rem;
+  border: 2px solid var(--btn-text);
+  color: var(--btn-text);
+  background-color: var(--btn-bkgd-default);  
+}
+#pointer {
+  z-index: 4;
+  position: fixed;
+  bottom: 4rem;
+  right: 1rem;
+  transform: rotate(-10deg);
+  display: flex;
+  gap: 0;
+  background-color: var(--btn-bkgd-default);
+  p {
+    margin: 0;
+  }
+}
+#pointer-text {
+  height: min-content;
+  padding: 0.5rem;
+}
+#pointer-symbols {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  p {
+    line-height: 0.8em;
+  }
+}
+#pointer-dismiss {cursor: pointer;}
+.bigger {font-size: 2em;}
+
+
+
+/***********************************************/
+/* ~~~ Optional styling for the input menu ~~~ */
+/***********************************************/
+
+#holograph-icon svg {
+  border-radius: 3px;
+  background-color: var(--btn-bkgd-default);
+}
+#holograph-buttons {margin-bottom: 0.5rem;}
+.holomenu-btn, #holograph-menu span {border-radius: 0.5rem;}
